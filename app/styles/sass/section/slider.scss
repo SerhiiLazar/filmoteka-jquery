@@ -1,0 +1,129 @@
+.slider {
+  position: relative;
+  max-width: 100%;
+  height: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: 20px;
+
+  &__slides {
+    display: flex;
+
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+    padding: 23px;
+    // border: 1px solid red;
+  }
+
+  &__slide {
+    flex: 0 0 calc(100% - 50px);
+    border-radius: 5px;
+
+    margin: 25px;
+    cursor: pointer;
+    position: relative;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      box-shadow: 7px -7px 21px rgba(119, 64, 24, 0.6);
+    }
+    @include mq(tablet) {
+      flex: 1 0 calc((100% - 150px) / 3);
+
+      transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+    @include mq(desktop) {
+      flex: 1 0 calc((100% - 200px) / 4);
+    }
+  }
+
+  &__slide img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  // &__controls {
+  //   position: absolute;
+  //   top: 50%;
+  //   width: 100%;
+
+  //   display: flex;
+  //   justify-content: space-between;
+  //   background-color: red;
+  //   transform: translateY(-50%);
+  // }
+  &__icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    // z-index: 100;
+    fill: red;
+    opacity: 0.6;
+
+    padding: 5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    animation: animationLogoYoutube 3000ms infinite 1000ms;
+  }
+}
+.slider__prev,
+.slider__next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.2);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.slider__prev {
+  left: 0px;
+}
+
+.slider__next {
+  right: 0px;
+}
+
+.slider__prev::before,
+.slider__next::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.slider__prev::before {
+  border-width: 10px 15px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+.slider__next::before {
+  border-width: 10px 0 10px 15px;
+  border-color: transparent transparent transparent white;
+}
+
+@keyframes animationLogoYoutube {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

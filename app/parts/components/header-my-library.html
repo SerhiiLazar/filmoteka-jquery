@@ -1,0 +1,73 @@
+<header class="header-lib">
+  <div class="container">
+    <div class="header-lib__container">
+      <!-- Logo -->
+      <a
+        class="logo hover-target"
+        href="./index.html"
+        aria-label="Website Logo"
+        lang="en"
+      >
+        <svg class="logo__icon" width="24" height="24">
+          <use href="./images/dist/sprite.svg#logo-icon"></use>
+        </svg>
+        <span class="logo__text">Filmoteka</span>
+      </a>
+
+      <!-- Navigation -->
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item hover-target">
+            <a class="nav__link" href="./index.html">Home</a>
+          </li>
+          <li class="nav__item hover-target">
+            <a class="nav__link nav__link--current" href="./library.html"
+              >My library</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Button-box-->
+    <div class="btn-container">
+      <button
+        class="library-button hover-target"
+        id="watched-lib"
+        type="button"
+      >
+        <span class="label">watched</span>
+      </button>
+
+      <button class="library-button hover-target" id="queue-lib" type="button">
+        <span class="label">queue</span>
+      </button>
+    </div>
+    <!-- User-theme
+    <div class="page-action">
+      <button type="button" class="page-action__theme hover-target"></button>
+    </div> -->
+  </div>
+</header>
+
+<!-- Plug-empty-->
+<section id="library-container" class="content">
+  <div id="spinner" hidden>Loading...</div>
+  <div class="container content-library__card">
+    <div class="content-library__img-card">
+      <img
+        src="https://i.imgur.com/iLiA7oC.png"
+        loading="lazy"
+        alt="mike"
+        class="content-library__image"
+      />
+    </div>
+    <div class="content-library__list">
+      <h2 class="content-library__title">Ouhh... it's empty in here!</h2>
+      <p class="content-library__text">
+        <a class="content-library__link" href="./index.html">Go back</a>
+        and add your favorite movies.
+      </p>
+    </div>
+  </div>
+</section>

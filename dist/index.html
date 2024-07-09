@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- <base href="/"> -->
+
+    <title>Filmoteka</title>
+    <!-- <meta name="description" content=""> -->
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <link rel="icon" href="" />
+    <!-- <meta property="og:image" content="images/dist/preview.jpg"> -->
+
+    <link rel="stylesheet" href="css/app.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header-home">
+  <div class="container">
+    <div class="header-home__container">
+      <!-- Logo -->
+      <a
+        class="logo hover-target"
+        href="./index.html"
+        aria-label="Website Logo"
+        lang="en"
+      >
+        <svg class="logo__icon" width="24" height="24">
+          <use href="./images/dist/sprite.svg#logo-icon"></use>
+        </svg>
+        <span class="logo__text">Filmoteka</span>
+      </a>
+
+      <!--     Navigation -->
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item hover-target">
+            <a class="nav__link nav__link--current" href="./index.html">Home</a>
+          </li>
+          <li class="nav__item hover-target">
+            <a class="nav__link" href="./library.html">My library</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!--     Search-form-->
+    <form id="form-search" action="" class="form-group">
+      <input
+        id="searchInput"
+        class="form-group__input hover-target"
+        autocomplete="off"
+        name="query"
+        type="text"
+        placeholder="Movie search"
+      />
+      <button class="form-group__button hover-target" type="submit">
+        <svg class="form-group__icon">
+          <use href="./images/dist/sprite.svg#search-icon"></use>
+        </svg>
+      </button>
+    </form>
+
+    <!-- Error-notification -->
+    <p class="error-notification">
+      <!-- Search result not successful. Enter the correct movie name. -->
+    </p>
+
+    <!-- User-theme
+    <div class="page-action">
+      <button type="button" class="page-action__theme hover-target"></button>
+    </div> -->
+  </div>
+</header>
+
+    <div class="container">
+  <div class="slider">
+    <ul class="slider__slides"></ul>
+    <div class="slider__controls">
+      <button class="slider__prev"></button>
+      <button class="slider__next"></button>
+    </div>
+  </div>
+</div>
+
+    <div id="iframeContainer" class="backdrop-player is-hidden">
+  <div class="iframe-container">
+    <iframe
+      id="iframePlayer"
+      width="560"
+      height="315"
+      src=""
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+
+    <div id="modal" class="backdrop is-hidden">
+  <div class="modal">
+    <button type="button" class="modal__btn-close" data-modal-close>
+      <svg class="modal__icon-close" width="14" height="14">
+        <use href="../images/dist/sprite.svg#close-icon"></use>
+      </svg>
+    </button>
+    <div class="modal__image-thumb">
+      <img class="modal__image" />
+    </div>
+    <div class="modal__info-thumb">
+      <h2 class="modal__title"></h2>
+      <table class="modal__info">
+        <tr class="modal__info-entry">
+          <td class="modal__info-key">Vote / Votes</td>
+          <td>
+            <span
+              id="vote-1"
+              class="modal__info-value-vote modal__info-value-vote--accent"
+            ></span>
+            / <span id="vote-2" class="modal__info-value-vote"></span>
+          </td>
+        </tr>
+        <tr class="modal__info-entry">
+          <td class="modal__info-key">Popularity</td>
+          <td id="popularity" class="modal__info-value"></td>
+        </tr>
+        <tr class="modal__info-entry">
+          <td class="modal__info-key">Original Title</td>
+          <td class="modal__info-value modal__info-value-title"></td>
+        </tr>
+        <tr class="modal__info-entry">
+          <td class="modal__info-key">Genre</td>
+          <td id="genres" class="modal__info-value"></td>
+        </tr>
+      </table>
+
+      <h3 class="modal__about">About</h3>
+      <p id="about" class="modal__about-text"></p>
+      <div class="modal__btn-container">
+        <button
+          id="watched"
+          type="button"
+          class="modal__btn modal__btn-watched"
+        ></button>
+        <button
+          id="queue"
+          type="button"
+          class="modal__btn modal__btn-queue"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <main>
+      <div class="home-page">
+  <div id="spinner" hidden>Loading...</div>
+  <ul id="imageResults" class="container container-open-modal gallery"></ul>
+  <div id="tui-pagination-container" class="tui-pagination"></div>
+</div>
+
+      <button class="scroll-btn" type="button" id="scroll-up" hidden>
+  <svg class="scroll-img" width="20" height="20">
+    <use href="./images/dist/sprite.svg#scroll-up-icon"></use>
+  </svg>
+</button>
+
+      <section class="pagination container">
+  <button class="pagination__btn" id="startBtn" disabled>
+    <i class="fa-solid fa-angles-left"></i>
+  </button>
+  <button class="pagination__btn prevNext" id="prev" disabled>
+    <i class="fa-solid fa-angle-left"></i>
+  </button>
+  <div class="pagination__links">
+    <!-- <a href="#" class="pagination__link active">1</a>
+    <a href="#" class="pagination__link">2</a>
+    <a href="#" class="pagination__link">3</a>
+    <a href="#" class="pagination__link">4</a>
+    <a href="#" class="pagination__link">5</a> -->
+  </div>
+  <button class="pagination__btn prevNext" id="next">
+    <i class="fa-solid fa-angle-right"></i>
+  </button>
+  <button class="pagination__btn" id="endBtn">
+    <i class="fa-solid fa-angles-right"></i>
+  </button>
+</section>
+
+    </main>
+    <footer>
+  <div class="container">
+    <div class="page__footer">
+      <p class="copyright">&copy; 2024 | All Rights Reserved |&nbsp;</p>
+      <div class="developers">
+        <p>Developed with</p>
+        <svg class="footer__icon" width="14" height="14">
+          <use href="./images/dist/sprite.svg#favorite-icon"></use>
+        </svg>
+        <p class="js-team-modal team-modal hover-target">by Serhii Lazarenok</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/app.min.js" type="module"></script>
+  </body>
+</html>
+
