@@ -249,7 +249,7 @@ let totalPages = 0;
 let trendingTotalPages = 0;
 let searchTotalPages = 0;
 let currentStep = 0;
-let maxPagesToShow = 5;
+let maxPagesToShow;
 let movieDetails = null;
 let movieDetailsPlayer = null;
 let page = 1;
@@ -493,7 +493,7 @@ function renderMovies(movies) {
     const movieId = movie.id;
     const randomDate = "2021";
     const movieYear = releaseDate || firstAirDate || randomDate;
-
+    const altText = movie.title || movie.name;
     let genreNamesArray = movieGenreNames.split(", ");
 
     if (genreNamesArray.length > 2) {
@@ -507,7 +507,10 @@ function renderMovies(movies) {
 
     const movieElement = $("<img>")
       .addClass("card_image")
-      .attr("src", imageURL);
+      .attr("src", imageURL)
+      .attr("loading", "lazy")
+      .attr("alt", altText)
+      .attr("width", "300");
 
     const movieTitle = $("<p>")
       .addClass("card_name")
@@ -535,12 +538,15 @@ function renderSlides(movies) {
 
   $.each(movies, function (_, movie) {
     const imageURL = IMAGE_BASE_URL_ORIGINAL + movie.poster_path;
-
     const movieId = movie.id;
+    const altText = movie.title || movie.name;
 
     const movieElement = $("<img>")
       .addClass("slider__images")
-      .attr("src", imageURL);
+      .attr("src", imageURL)
+      .attr("loading", "lazy")
+      .attr("alt", altText)
+      .attr("width", "300");
 
     const svgHTML = `
           <svg class="slider__icon" width="100" height="100">
@@ -603,8 +609,13 @@ function initSlide() {
 function showModal(movie) {
   const modal = $("#modal");
   const movieGenres = movie.genres.map(genre => genre.name).join(", ");
+  const altText = movie.title || movie.name;
+  $(".modal__image")
+    .attr("src", IMAGE_BASE_URL_ORIGINAL + movie.poster_path)
+    .attr("loading", "lazy")
+    .attr("alt", altText)
+    .attr("width", "300");
 
-  $(".modal__image").attr("src", IMAGE_BASE_URL_ORIGINAL + movie.poster_path);
   $(".modal__title").text(
     movie.name || movie.original_title || movie.original_name
   );
@@ -716,6 +727,7 @@ function removeMovieQueueFromLocalStorage(movieId) {
 function renderMovieCard(movie) {
   let genresName = movie.genres.map(genre => genre.name);
   const movieId = movie.id;
+  const altText = movie.title || movie.name;
   if (genresName.length > 2) {
     genresName = genresName.slice(0, 2);
     genresName.push("...Other");
@@ -727,7 +739,9 @@ function renderMovieCard(movie) {
   const movieElement = $("<img>")
     .addClass("card_image")
     .attr("loading", "lazy")
-    .attr("src", IMAGE_BASE_URL_ORIGINAL + movie.poster_path);
+    .attr("src", IMAGE_BASE_URL_ORIGINAL + movie.poster_path)
+    .attr("alt", altText)
+    .attr("width", "300");
 
   const movieTitle = $("<p>").addClass("card_name").text(movie.original_title);
 
@@ -805,7 +819,13 @@ const updateBtn = function () {
     $prevNext.eq(0).attr("disabled", false);
   }
 };
-
+if ($(window).width() < 375) {
+  maxPagesToShow = 2;
+} else if ($(window).width() < 768) {
+  maxPagesToShow = 3;
+} else {
+  maxPagesToShow = 5;
+}
 const generatePaginationLinks = function () {
   $linksContainer.empty();
   if (totalPages === 1) {

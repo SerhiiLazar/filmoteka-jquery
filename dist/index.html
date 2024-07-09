@@ -1,19 +1,40 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <!-- <base href="/"> -->
-
-    <title>Filmoteka</title>
-    <!-- <meta name="description" content=""> -->
-
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
     />
-
+    <title>Filmoteka | Home</title>
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./images/dist/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/dist/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./images/dist/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./images/dist/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="./images/dist/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="" />
     <!-- <meta property="og:image" content="images/dist/preview.jpg"> -->
 
@@ -64,7 +85,11 @@
         type="text"
         placeholder="Movie search"
       />
-      <button class="form-group__button hover-target" type="submit">
+      <button
+        class="form-group__button hover-target"
+        type="submit"
+        aria-label="Search"
+      >
         <svg class="form-group__icon">
           <use href="./images/dist/sprite.svg#search-icon"></use>
         </svg>
@@ -177,10 +202,20 @@
 </button>
 
       <section class="pagination container">
-  <button class="pagination__btn" id="startBtn" disabled>
+  <button
+    class="pagination__btn"
+    id="startBtn"
+    disabled
+    aria-label="start button"
+  >
     <i class="fa-solid fa-angles-left"></i>
   </button>
-  <button class="pagination__btn prevNext" id="prev" disabled>
+  <button
+    class="pagination__btn prevNext"
+    id="prev"
+    disabled
+    aria-label="prev button"
+  >
     <i class="fa-solid fa-angle-left"></i>
   </button>
   <div class="pagination__links">
@@ -190,10 +225,10 @@
     <a href="#" class="pagination__link">4</a>
     <a href="#" class="pagination__link">5</a> -->
   </div>
-  <button class="pagination__btn prevNext" id="next">
+  <button class="pagination__btn prevNext" id="next" aria-label="next button">
     <i class="fa-solid fa-angle-right"></i>
   </button>
-  <button class="pagination__btn" id="endBtn">
+  <button class="pagination__btn" id="endBtn" aria-label="end button">
     <i class="fa-solid fa-angles-right"></i>
   </button>
 </section>

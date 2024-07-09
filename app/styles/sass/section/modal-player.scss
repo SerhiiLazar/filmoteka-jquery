@@ -85,11 +85,20 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 560px;
-  height: 315px;
+  width: 280px;
   transform: translate(-50%, -50%);
   background: #000;
   z-index: 1000;
+
+  @include mq(tablet) {
+    width: 560px;
+    height: 315px;
+  }
+
+  @include mq(desktop) {
+    width: 560px;
+    height: 315px;
+  }
 }
 
 .iframe-container iframe {
